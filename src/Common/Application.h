@@ -1,9 +1,16 @@
 #pragma once
+#include <memory>
+#include <array>
 #include "Vector2.h"
+#include "Players.h"
 
 #define SCREEN_X 640
 #define SCREEN_Y 540
 #define TITLE "PuyoGame"
+
+class Input;
+
+using SharedInputs = std::array<std::shared_ptr<Input>, static_cast<int>(PLAYERS::MAX)>;
 
 class Application
 {
@@ -37,4 +44,6 @@ private:
 		this->screenSize.x = size.x;
 		this->screenSize.y = size.y;
 	}
+
+	SharedInputs inputs;
 };

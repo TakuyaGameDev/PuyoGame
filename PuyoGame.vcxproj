@@ -131,12 +131,18 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Common\Application.cpp" />
-    <ClCompile Include="src\Scene\SceneBase.cpp" />
+    <ClCompile Include="src\Input\Input.cpp" />
+    <ClCompile Include="src\Input\Keyboard.cpp" />
+    <ClCompile Include="src\Scene\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Common\Application.h" />
+    <ClInclude Include="src\Common\Players.h" />
     <ClInclude Include="src\Common\Vector2.h" />
-    <ClInclude Include="src\Scene\SceneBase.h" />
+    <ClInclude Include="src\Input\Commands.h" />
+    <ClInclude Include="src\Input\Input.h" />
+    <ClInclude Include="src\Input\Keyboard.h" />
+    <ClInclude Include="src\Scene\Scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "Application.h"
+#include "../Input/Keyboard.h"
 
 void Application::Run(void)
 {
@@ -9,7 +10,7 @@ void Application::Run(void)
 	}
 	while (!CheckHitKey(KEY_INPUT_ESCAPE))
 	{
-
+		inputs[static_cast<int>(PLAYERS::P_1)]->Update();
 	}
 }
 
@@ -29,5 +30,6 @@ bool Application::SysInit()
 		return false;
 	}
 
+	inputs[static_cast<int>(PLAYERS::P_1)] = std::make_shared<Keyboard>();
 	return true;
 }
