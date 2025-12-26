@@ -1,5 +1,8 @@
 #pragma once
 
+/// <summary>
+/// x,y‚ğ\‘¢‘Ì‚Æ‚µ‚Ä‚Á‚Ä‚¢‚éƒNƒ‰ƒX
+/// </summary>
 class Vector2 {
 public:
 	double x;

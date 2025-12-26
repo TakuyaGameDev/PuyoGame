@@ -133,7 +133,11 @@
     <ClCompile Include="src\Common\Application.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\Input\Keyboard.cpp" />
+    <ClCompile Include="src\Scene\CharacterSelectScene.cpp" />
+    <ClCompile Include="src\Scene\PauseScene.cpp" />
     <ClCompile Include="src\Scene\Scene.cpp" />
+    <ClCompile Include="src\Scene\SceneManager.cpp" />
+    <ClCompile Include="src\Scene\TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Common\Application.h" />
@@ -142,7 +146,11 @@
     <ClInclude Include="src\Input\Commands.h" />
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\Input\Keyboard.h" />
+    <ClInclude Include="src\Scene\CharacterSelectScene.h" />
+    <ClInclude Include="src\Scene\PauseScene.h" />
     <ClInclude Include="src\Scene\Scene.h" />
+    <ClInclude Include="src\Scene\SceneManager.h" />
+    <ClInclude Include="src\Scene\TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

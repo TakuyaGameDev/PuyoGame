@@ -3,6 +3,9 @@
 
 #include <type_traits>
 
+/// <summary>
+/// プレイヤー定義クラス(enum)
+/// </summary>
 enum class PLAYERS
 {
 	P_1,

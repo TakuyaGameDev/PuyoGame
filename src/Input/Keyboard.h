@@ -3,11 +3,11 @@
 
 class Keyboard : public Input {
 public:
-	Keyboard();
+	Keyboard(PLAYERS p);
 	~Keyboard();
 	void Update(void);
 	const bool GetInputTrigger(const COMMANDS& com);
 private:
 	std::array<char, 256> keyData;
-	void SetInputMap(void);
+	void SetCommandMap(void);
 };

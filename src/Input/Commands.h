@@ -2,15 +2,24 @@
 
 #include <type_traits>
 
-// ﾎﾞﾀﾝの種類
+/// <summary>
+/// アクションボタンのマッピングクラス(enum)
+/// </summary>
 enum class COMMANDS
 {
+	// 右
 	RIGHT,
+	// 左
 	LEFT,
+	// 上
 	UP,
+	// 下
 	DOWN,
+	// 決定
 	DECISION,
+	// キャンセル
 	CANCEL,
+	// ポーズ
 	PAUSE,
 	MAX
 };
