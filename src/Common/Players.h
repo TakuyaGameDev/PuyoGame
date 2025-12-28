@@ -1,6 +1,4 @@
 #pragma once
-#pragma once
-
 #include <type_traits>
 
 /// <summary>

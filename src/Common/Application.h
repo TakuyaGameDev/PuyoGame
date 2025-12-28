@@ -3,20 +3,24 @@
 #include <array>
 #include "Vector2.h"
 #include "Players.h"
+#include "../Resources/UI/UIManager.h"
 
 // 画面サイズ(横)
 #define SCREEN_X 1000
 // 画面サイズ(縦)
 #define SCREEN_Y 600
 // ウィンドウのタイトル
-#define TITLE "PuyoGame"
+constexpr auto TITLE = "PuyoGame";
+// リソースファイル(フォント)へのベースパス
+constexpr auto BASE_FONT_PATH = "Resources/Fonts/";
 
-class Input;
 class SceneManager;
+class Input;
 
 // 入力デバイス情報(プレイヤー配列として宣言)
 using SharedInputs = std::array<std::shared_ptr<Input>, static_cast<int>(PLAYERS::MAX)>;
 using SharedSceneManager = std::shared_ptr<SceneManager>;
+using UniqueUIManager = std::unique_ptr<UIManager>;
 
 /// <summary>
 /// アプリケーションのエントリクラス
@@ -31,8 +35,8 @@ public:
 	/// <returns>シングルトンインスタンス</returns>
 	static Application& GetInstance(void)
 	{
-		static Application sInstance_;
-		return sInstance_;
+		static Application sInstance;
+		return sInstance;
 	}
 
 	/// <summary>
@@ -63,7 +67,6 @@ private:
 	/// </summary>
 	Application() = default;
 	
-	
 	/// <summary>
 	/// コピー禁止
 	/// </summary>
@@ -93,6 +96,13 @@ private:
 	}
 
 	/// <summary>
+	/// リソース群を読み込む
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns></returns>
+	bool LoadResources(void);
+
+	/// <summary>
 	/// 入力デバイス(プレイヤー配列)
 	/// </summary>
 	SharedInputs inputs;
@@ -101,4 +111,9 @@ private:
 	/// シーン管理変数
 	/// </summary>
 	SharedSceneManager sceneManager;
+
+	/// <summary>
+	/// UI管理変数
+	/// </summary>
+	UniqueUIManager uiManager;
 };

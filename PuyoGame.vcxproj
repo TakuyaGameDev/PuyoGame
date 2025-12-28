@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -104,6 +104,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(DXLIB_DIR)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -121,6 +122,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(DXLIB_DIR)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -130,9 +132,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Animation\AnimatedSprite.cpp" />
+    <ClCompile Include="src\Animation\AnimationManager.cpp" />
     <ClCompile Include="src\Common\Application.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\Input\Keyboard.cpp" />
+    <ClCompile Include="src\Resources\ResourceManager.cpp" />
+    <ClCompile Include="src\Resources\UI\Elements\Title\TitleObject.cpp" />
+    <ClCompile Include="src\Resources\UI\Elements\Title\TitleText.cpp" />
+    <ClCompile Include="src\Resources\UI\UIElement.cpp" />
+    <ClCompile Include="src\Resources\UI\UIManager.cpp" />
     <ClCompile Include="src\Scene\CharacterSelectScene.cpp" />
     <ClCompile Include="src\Scene\PauseScene.cpp" />
     <ClCompile Include="src\Scene\Scene.cpp" />
@@ -140,12 +149,23 @@
     <ClCompile Include="src\Scene\TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Animation\AnimatedSprite.h" />
+    <ClInclude Include="src\Animation\AnimationManager.h" />
+    <ClInclude Include="src\Animation\AnimType.h" />
     <ClInclude Include="src\Common\Application.h" />
+    <ClInclude Include="src\Common\ObjectType.h" />
     <ClInclude Include="src\Common\Players.h" />
     <ClInclude Include="src\Common\Vector2.h" />
     <ClInclude Include="src\Input\Commands.h" />
     <ClInclude Include="src\Input\Input.h" />
+    <ClInclude Include="src\Input\InputSet.h" />
     <ClInclude Include="src\Input\Keyboard.h" />
+    <ClInclude Include="src\Resources\ResourceManager.h" />
+    <ClInclude Include="src\Resources\UI\Elements\Title\TitleObject.h" />
+    <ClInclude Include="src\Resources\UI\Elements\Title\TitleText.h" />
+    <ClInclude Include="src\Resources\UI\UIElement.h" />
+    <ClInclude Include="src\Resources\UI\UIManager.h" />
+    <ClInclude Include="src\Resources\UI\UIType.h" />
     <ClInclude Include="src\Scene\CharacterSelectScene.h" />
     <ClInclude Include="src\Scene\PauseScene.h" />
     <ClInclude Include="src\Scene\Scene.h" />

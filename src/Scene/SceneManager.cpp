@@ -1,12 +1,26 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-SceneManager::SceneManager()
+SceneManager::SceneManager(UIManager& uiManager):uiManager(uiManager)
 {
 }
 
 SceneManager::~SceneManager()
 {
+}
+
+void SceneManager::Update(float dt)
+{
+	if (!sceneStack.empty()) {
+		sceneStack.top()->Update(uiManager);
+	}
+}
+
+void SceneManager::Draw()
+{
+	if (!sceneStack.empty()) {
+		sceneStack.top()->Draw(uiManager);
+	}
 }
 
 void SceneManager::ChangeScene(ScenePtr newScene)
@@ -18,13 +32,13 @@ void SceneManager::ChangeScene(ScenePtr newScene)
 	}
 	// 新しいシーンの追加
 	sceneStack.push(newScene);
-	sceneStack.top()->OnEnter();
+	sceneStack.top()->OnEnter(uiManager);
 }
 void SceneManager::PushScene(ScenePtr newScene)
 {
 	// 新しいシーンの追加
 	sceneStack.push(newScene);
-	sceneStack.top()->OnEnter();
+	sceneStack.top()->OnEnter(uiManager);
 }
 
 void SceneManager::PopScene(void) {
@@ -36,7 +50,7 @@ void SceneManager::PopScene(void) {
 	// 削除した後に新しいシーンが残っていればそのシーンの初期化
 	// 例) ポーズ→ゲームプレイ画面に戻る場合等
 	if (!sceneStack.empty()) {
-		sceneStack.top()->OnEnter();
+		sceneStack.top()->OnEnter(uiManager);
 	}
 }
 

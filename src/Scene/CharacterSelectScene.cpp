@@ -3,19 +3,20 @@
 #include "CharacterSelectScene.h"
 #include "PauseScene.h"
 
-CharacterSelectScene::CharacterSelectScene(std::shared_ptr<SceneManager> m, std::shared_ptr<Input> i) : sceneManager(m), input(i)
+CharacterSelectScene::CharacterSelectScene(std::shared_ptr<SceneManager> m, InputSet iSet) : sceneManager(m)
 {
+	inputSet = iSet;
 }
 
 CharacterSelectScene::~CharacterSelectScene()
 {
 }
 
-void CharacterSelectScene::Update(void)
+void CharacterSelectScene::Update(UIManager& uiManager)
 {
 	// 入力情報
 	// ※ 入力情報は参照限定(weak_ptr)の為、必ずlockをしてから参照する
-	if (auto i = input.lock())
+	if (auto i = inputSet.p1.lock())
 	{
 		// ポーズボタン押下時
 		if (i->GetInputTrigger(COMMANDS::PAUSE))
@@ -24,18 +25,25 @@ void CharacterSelectScene::Update(void)
 			// ※ 入力情報は参照限定(weak_ptr)の為、必ずlockをしてから参照する
 			if (auto m = sceneManager.lock())
 			{
-				m->PushScene(std::make_shared<PauseScene>(m, i));
+				m->PushScene(std::make_shared<PauseScene>(m, inputSet));
 			}
 		}
 	}
-	// 描画処理
-	Draw();
+	uiManager.Update(1.0f);
 }
 
-void CharacterSelectScene::Draw(void)
+void CharacterSelectScene::OnEnter(UIManager& uiManager) 
 {
-	ClsDrawScreen();
-	DrawFormatString(0, 0, 0xffffff, "%s", tmp.c_str());
 
-	ScreenFlip();
+}
+
+void CharacterSelectScene::OnExit() 
+{
+
+}
+
+void CharacterSelectScene::Draw(UIManager& uiManager)
+{
+	DrawFormatString(0, 0, 0xffffff, "%s", tmp.c_str());
+	uiManager.Draw();
 }

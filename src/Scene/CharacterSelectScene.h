@@ -3,7 +3,6 @@
 #include "Scene.h"
 
 class SceneManager;
-class Input;
 
 /// <summary>
 /// キャラクターセレクト画面クラス
@@ -11,15 +10,16 @@ class Input;
 class CharacterSelectScene : public Scene
 {
 public:
-	CharacterSelectScene(std::shared_ptr<SceneManager> m, std::shared_ptr<Input> i);
+	CharacterSelectScene(std::shared_ptr<SceneManager> m, InputSet iSet);
 	~CharacterSelectScene();
 
-	void Update(void);
+	void Update(UIManager& uiManager);
+	void OnEnter(UIManager& uiManager);
+	void OnExit();
 private:
 	std::weak_ptr<SceneManager> sceneManager;
-	std::weak_ptr<Input> input;
 
 	std::string tmp = "CharaSelectScene";
 
-	void Draw(void);
+	void Draw(UIManager& uiManager);
 };

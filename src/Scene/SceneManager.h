@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <stack>
+#include "../Resources/UI/UIManager.h"
 
 class Scene;
 /// <summary>
@@ -15,8 +16,11 @@ using ScenePtr = std::shared_ptr<Scene>;
 class SceneManager : public std::enable_shared_from_this<SceneManager>
 {
 public:
-	SceneManager();
+	SceneManager(UIManager& uiManager);
 	~SceneManager();
+	void Update(float dt);
+
+	void Draw();
 	/// <summary>
 	/// シーンの変更(初期シーン設定時にも使用可能)
 	/// </summary>
@@ -51,4 +55,9 @@ private:
 	/// シーンを格納していくスタック変数
 	/// </summary>
 	std::stack<ScenePtr> sceneStack;
+
+	/// <summary>
+	/// UI管理変数(参照のみ)
+	/// </summary>
+	UIManager& uiManager;
 };

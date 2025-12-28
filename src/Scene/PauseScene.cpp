@@ -3,19 +3,20 @@
 #include "CharacterSelectScene.h"
 #include "PauseScene.h"
 
-PauseScene::PauseScene(std::shared_ptr<SceneManager> m, std::shared_ptr<Input> i) : sceneManager(m), input(i)
+PauseScene::PauseScene(std::shared_ptr<SceneManager> m, InputSet iSet) : sceneManager(m)
 {
+	inputSet = iSet;
 }
 
 PauseScene::~PauseScene()
 {
 }
 
-void PauseScene::Update(void)
+void PauseScene::Update(UIManager& uiManager)
 {
 	// 入力情報
 	// ※ 入力情報は参照限定(weak_ptr)の為、必ずlockをしてから参照する
-	if (auto i = input.lock())
+	if (auto i = inputSet.p1.lock())
 	{
 		// キャンセルボタン押下時
 		if (i->GetInputTrigger(COMMANDS::CANCEL))
@@ -28,14 +29,21 @@ void PauseScene::Update(void)
 			}
 		}
 	}
-	// 描画処理
-	Draw();
+	uiManager.Update(1.0f);
 }
 
-void PauseScene::Draw(void)
+void PauseScene::OnEnter(UIManager& uiManager) 
 {
-	ClsDrawScreen();
-	DrawFormatString(0, 0, 0xffffff, "%s", tmp.c_str());
 
-	ScreenFlip();
+}
+
+void PauseScene::OnExit() 
+{
+
+}
+
+void PauseScene::Draw(UIManager& uiManager)
+{
+	DrawFormatString(0, 0, 0xffffff, "%s", tmp.c_str());
+	uiManager.Draw();
 }
