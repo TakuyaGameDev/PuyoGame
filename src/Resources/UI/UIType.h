@@ -14,6 +14,7 @@ enum class UITYPE {
 	TITLE_7,
 	TITLE_8,
 	TITLE_9,
+	TITLE_10,
     MAX
 };
 

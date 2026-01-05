@@ -77,5 +77,6 @@ bool Application::LoadResources(void)
 	resourceManager.LoadFont("title_2", "Eva Poshy", 32, DX_FONTTYPE_EDGE);
 
 	resourceManager.LoadTexture("objects", "Resources/Objects/Chests.png", { 5, 8 }, { 48, 32 });
+	resourceManager.LoadTexture("cursor", "Resources/UI/Cursor.png");
 	return true;
 }

@@ -5,6 +5,7 @@
 #include "../Resources/ResourceManager.h"
 #include "../Resources/UI/Elements/Title/TitleText.h"
 #include "../Resources/UI/Elements/Title/TitleObject.h"
+#include "../Resources/UI/Elements/Common/Cursor.h"
 #include "../Common/Application.h"
 
 TitleScene::TitleScene(std::shared_ptr<SceneManager> m, InputSet iSet, bool isTrueTitle) : sceneManager(m), isTrueTitle(isTrueTitle)
@@ -133,13 +134,14 @@ void TitleScene::OnEnter(UIManager& uiManager)
 	else
 	{
 		auto font_2 = ResourceManager::GetInstance().GetFont("title_2", 32);
-
+		auto cursor = ResourceManager::GetInstance().GetTexture("cursor");
 		auto titleUI_4 = std::make_shared<TitleText>(UITYPE::TITLE_4, font_1, Vector2(200, 100), GetColor(255, 0, 255), "Smashy");
 		auto titleUI_5 = std::make_shared<TitleText>(UITYPE::TITLE_5, font_1, Vector2(scrSize.x - 400, 100), GetColor(255, 0, 255), "Loot");
 		auto titleUI_6 = std::make_shared<TitleText>(UITYPE::TITLE_6, font_1, Vector2(scrSize.x - 500, 100), GetColor(255, 0, 255), "x");
 		auto titleUI_7 = std::make_shared<TitleText>(UITYPE::TITLE_7, font_2, Vector2(400, scrSize.y - 300), GetColor(255, 255, 255), "T R A N I N G");
 		auto titleUI_8 = std::make_shared<TitleText>(UITYPE::TITLE_8, font_2, Vector2(400, scrSize.y - 250), GetColor(255, 255, 255), "S T A R T (vs COM)");
 		auto titleUI_9 = std::make_shared<TitleText>(UITYPE::TITLE_9, font_2, Vector2(400, scrSize.y - 200), GetColor(255, 255, 255), "S T A R T (vs 2P)");
+		auto titleUI_10 = std::make_shared<Cursor>(animManager, inputSet.p1, UITYPE::TITLE_10, Vector2(200, scrSize.y - 300), cursor, MOVABLE_DIRECTION::VERTICAL);
 
 		uiManager.Add(titleUI_4, UILAYER::SCENE);
 		uiManager.Add(titleUI_5, UILAYER::SCENE);
@@ -147,6 +149,7 @@ void TitleScene::OnEnter(UIManager& uiManager)
 		uiManager.Add(titleUI_7, UILAYER::SCENE);
 		uiManager.Add(titleUI_8, UILAYER::SCENE);
 		uiManager.Add(titleUI_9, UILAYER::SCENE);
+		uiManager.Add(titleUI_10, UILAYER::SCENE);
 
 		uiList.push_back(titleUI_4);
 		uiList.push_back(titleUI_5);
@@ -154,6 +157,7 @@ void TitleScene::OnEnter(UIManager& uiManager)
 		uiList.push_back(titleUI_7);
 		uiList.push_back(titleUI_8);
 		uiList.push_back(titleUI_9);
+		uiList.push_back(titleUI_10);
 	}
 }
 

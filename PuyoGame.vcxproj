@@ -138,6 +138,7 @@
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\Input\Keyboard.cpp" />
     <ClCompile Include="src\Resources\ResourceManager.cpp" />
+    <ClCompile Include="src\Resources\UI\Elements\Common\Cursor.cpp" />
     <ClCompile Include="src\Resources\UI\Elements\Title\TitleObject.cpp" />
     <ClCompile Include="src\Resources\UI\Elements\Title\TitleText.cpp" />
     <ClCompile Include="src\Resources\UI\UIElement.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="src\Input\InputSet.h" />
     <ClInclude Include="src\Input\Keyboard.h" />
     <ClInclude Include="src\Resources\ResourceManager.h" />
+    <ClInclude Include="src\Resources\UI\Elements\Common\Cursor.h" />
     <ClInclude Include="src\Resources\UI\Elements\Title\TitleObject.h" />
     <ClInclude Include="src\Resources\UI\Elements\Title\TitleText.h" />
     <ClInclude Include="src\Resources\UI\UIElement.h" />

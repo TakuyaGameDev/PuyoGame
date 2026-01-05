@@ -12,7 +12,7 @@ public:
     ~TitleObject();
 
     void Update(float dt);
-    void Draw() const;
+    void Draw(void) const;
 
     void SetCanMove(bool flg)
     {
