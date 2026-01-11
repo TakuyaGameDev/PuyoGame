@@ -11,6 +11,7 @@
 TitleScene::TitleScene(std::shared_ptr<SceneManager> m, InputSet iSet, bool isTrueTitle) : sceneManager(m), isTrueTitle(isTrueTitle)
 {
 	isDrawNextScene = false;
+	mode = MODE::TRANING;
 	if (isTrueTitle) 
 	{
 		fadeState = FADE_STATE::FADE_IN;
@@ -56,11 +57,31 @@ void TitleScene::Update(UIManager& uiManager)
 			// 決定ボタン押下時
 			if (i->GetInputTrigger(COMMANDS::DECISION))
 			{
-				// キャラクターセレクト画面へ遷移
-				// ※ 入力情報は参照限定(weak_ptr)の為、必ずlockをしてから参照する
-				if (auto m = sceneManager.lock())
+				switch (mode)
 				{
-					m->ChangeScene(std::make_shared<CharacterSelectScene>(m, inputSet));
+				case MODE::TRANING:
+					break;
+
+				case MODE::VSCOM:
+					// キャラクターセレクト画面へ遷移
+					// ※ 入力情報は参照限定(weak_ptr)の為、必ずlockをしてから参照する
+					if (auto m = sceneManager.lock())
+					{
+						m->ChangeScene(std::make_shared<CharacterSelectScene>(m, inputSet, mode));
+					}
+					break;
+
+				case MODE::VS2P:
+					// キャラクターセレクト画面へ遷移
+					// ※ 入力情報は参照限定(weak_ptr)の為、必ずlockをしてから参照する
+					if (auto m = sceneManager.lock())
+					{
+						m->ChangeScene(std::make_shared<CharacterSelectScene>(m, inputSet, mode));
+					}
+					break;
+
+				default:
+					break;
 				}
 			}
 		}
@@ -141,7 +162,23 @@ void TitleScene::OnEnter(UIManager& uiManager)
 		auto titleUI_7 = std::make_shared<TitleText>(UITYPE::TITLE_7, font_2, Vector2(400, scrSize.y - 300), GetColor(255, 255, 255), "T R A N I N G");
 		auto titleUI_8 = std::make_shared<TitleText>(UITYPE::TITLE_8, font_2, Vector2(400, scrSize.y - 250), GetColor(255, 255, 255), "S T A R T (vs COM)");
 		auto titleUI_9 = std::make_shared<TitleText>(UITYPE::TITLE_9, font_2, Vector2(400, scrSize.y - 200), GetColor(255, 255, 255), "S T A R T (vs 2P)");
-		auto titleUI_10 = std::make_shared<Cursor>(animManager, inputSet.p1, UITYPE::TITLE_10, Vector2(200, scrSize.y - 300), cursor, MOVABLE_DIRECTION::VERTICAL);
+		auto titleUI_10 = std::make_shared<Cursor>(animManager, inputSet.p1, UITYPE::TITLE_10, Vector2(200, scrSize.y - 300), Vector2(200, scrSize.y - 200), cursor, MOVABLE_DIRECTION::VERTICAL);
+
+		titleUI_10->SetMode([this, scrSize](const Vector2& pos)
+			{
+				if (pos.y == scrSize.y - 300)
+				{
+					mode = MODE::TRANING;
+				}
+				else if(pos.y == scrSize.y - 250)
+				{
+					mode = MODE::VSCOM;
+				}
+				else if (pos.y == scrSize.y - 200)
+				{
+					mode = MODE::VS2P;
+				}
+			});
 
 		uiManager.Add(titleUI_4, UILAYER::SCENE);
 		uiManager.Add(titleUI_5, UILAYER::SCENE);
@@ -168,6 +205,7 @@ void TitleScene::OnExit()
 
 void TitleScene::Draw(UIManager& uiManager)
 {
+	DrawFormatString(0, 30, 0xffffff, "mode:%d", mode);
 	if (isTrueTitle)
 	{
 		DrawFormatString(0, 0, 0xffffff, "%s", tmp.c_str());

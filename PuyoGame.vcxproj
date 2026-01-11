@@ -154,6 +154,7 @@
     <ClInclude Include="src\Animation\AnimationManager.h" />
     <ClInclude Include="src\Animation\AnimType.h" />
     <ClInclude Include="src\Common\Application.h" />
+    <ClInclude Include="src\Common\Mode.h" />
     <ClInclude Include="src\Common\ObjectType.h" />
     <ClInclude Include="src\Common\Players.h" />
     <ClInclude Include="src\Common\Vector2.h" />

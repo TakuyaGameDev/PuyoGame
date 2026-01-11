@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Scene.h"
+#include "../Common/Mode.h"
 
 class SceneManager;
 
@@ -39,4 +40,6 @@ private:
 	// 放射状フェード用
 	float fadeRadius;
 	float fadeRadiusSpeed;
+
+	MODE mode;
 };
